@@ -72,24 +72,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ------------------------------------------
-    // 3. Contact Form Validation
-    // ------------------------------------------
+   
+// 3. Contact Form Validation
+const contactForm = document.getElementById("contactForm");
 
-    const contactForm = document.querySelector(".contact-form");
+if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
 
-    if (contactForm) {
-        contactForm.addEventListener("submit", function (event) {
+        if (!contactForm.checkValidity()) {
+            event.preventDefault();
+            contactForm.reportValidity();
+            return;
+        }
 
-            if (!contactForm.checkValidity()) {
-                event.preventDefault();
-                contactForm.reportValidity();
-                return;
-            }
-
-            // This validates the form but does not send the message.
-            console.log("Contact form validation passed.");
-        });
-    }
+        // Allow the browser to submit the form to Formspree.
+        console.log("Contact form submitted.");
+    });
+}
 
     // ------------------------------------------
     // 4. Current Year in the Footer
